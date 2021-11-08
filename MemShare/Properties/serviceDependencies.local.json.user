@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-11-08T18:52:59.9191145Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2021-11-08T18:52:41.5667876Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "613572c7-88a3-4c9c-8c73-2098266f05b4"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "MemShare"
+    }
+  }
+}

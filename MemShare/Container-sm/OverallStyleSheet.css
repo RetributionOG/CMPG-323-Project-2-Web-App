@@ -1,0 +1,358 @@
+﻿body 
+{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+    background-image: url('../Images/Main Background.jpg');
+    height: 100%;
+    background-position: center;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #000000;
+}
+
+.loginbox 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 440px;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(128, 128, 128, 0.9);
+    border-radius: 10%;
+}
+
+.resetPassword 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 520px;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(128, 128, 128, 0.9);
+    border-radius: 10%;
+}
+
+.logo 
+{
+    width: 182px;
+    height: 159px;
+    overflow: hidden;
+    top: -79px;
+    left: 85px;
+    position: absolute;
+    border-radius: 10%;
+}
+
+.signUpLogo
+{
+    width: 185px;
+    height: 165px;
+    overflow: hidden;
+    top: calc(2px/2);
+    left: calc(0.1% - 0.1px);
+    position: absolute;
+    border-radius: 10%;
+}
+
+.profileLogo {
+    width: calc(875px - 875);
+    height: calc(850px / 2);
+    overflow: hidden;
+    top: calc(85%/2);
+    left: calc(50% - 50px);
+    position: absolute;
+    border-radius: 10%;
+}
+
+h2 
+{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: rgb(255, 217, 9);
+}
+
+h3 {
+    top: 10px;
+    padding: 0;
+    margin: 0;
+    left: calc(30% - 30px);
+    top: calc(-5px/2);
+    font-size: calc(20px + (60-20) * ((100vw - 500px) / (1920 - 500)));
+    color: rgb(255, 217, 9);
+    position: absolute;
+    height: 93px;
+    width: 1200px;
+}
+
+h4 
+{
+    top: 10px;
+    padding: 0;
+    margin: 0;
+    left: calc(20% - 20px);
+    top: calc(-5px/2);
+    font-size: calc(20px + (60-20) * ((100vw - 500px) / (1920 - 500)));
+    color: rgb(255, 217, 9);
+    position: absolute;
+    height: 93px;
+    width: 900px;
+}
+
+h5
+{
+    top: 10px;
+    padding: 0;
+    margin: 0;
+    left: calc(40% - 40px);
+    top: calc(-5px/2);
+    font-size: calc(20px + (60-20) * ((100vw - 500px) / (1920 - 500)));
+    color: rgb(255, 217, 9);
+    position: absolute;
+    height: 93px;
+    width: 900px;
+}
+h6 {
+    top: 10px;
+    padding: 0;
+    margin: 0;
+    left: calc(40% - 40px);
+    top: calc(-5px/2);
+    font-size: calc(20px + (60-20) * ((100vw - 500px) / (1920 - 500)));
+    color: rgb(255, 217, 9);
+    position: absolute;
+    height: 93px;
+    width: 900px;
+}
+
+.lblEmail, .lblPassword, .lblName, .lblContactNo, .chkBoxDelete
+{
+    font-weight: bold;
+    color: #ffd909;
+}
+
+.txtEmail, .txtPassword, .btnSubmit, .txtContactNo, .txtName 
+{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.txtEmail, .txtPassword, .txtContactNo, .txtName
+{
+    border: none;
+    border-bottom: 3px solid #000000;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+::placeholder
+{
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.btnSubmit, .btnSubmitContact
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+    color: rgba(255, 205, 9, 0.92);
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 20px;
+    transition: .3s ease-in-out;
+}
+
+.btnSubmit:hover, .btnSubmitContact:hover 
+{
+    background-color: rgb(220, 10, 10);
+}
+
+.btnForget 
+{
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffd909;
+}
+
+.btnForget:hover
+{
+    text-decoration: underline;
+}
+
+.validators 
+{
+    position: absolute;
+    color: #ff0000;
+}
+
+.sidenav 
+{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    opacity: .9;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.9s;
+}
+
+.sidenav a {
+    padding: 40px 8px 20px 8px;
+    text-decoration: none;
+    font-size: 30px;
+    color: #FFD909;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover 
+{
+    color: rgb(220, 10, 10);
+}
+
+.sidenav .closebtn 
+{
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 50px;
+    margin-left: 50px;
+}
+
+#main 
+{
+    transition: margin-left .9s;
+    padding: 20px;
+}
+
+.background_box
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 90vh;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(128, 128, 128, 0.8);
+    border-radius: 10%;
+}
+
+.background_box_About {
+    position: absolute;
+    top: 5%;
+    left: 15%;
+    width: 75%;
+    height: 215vh;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(128, 128, 128, 0.8);
+    border-radius: 10%;
+}
+
+.lblNews, .lblAbout {
+    font-weight: bold;
+    color: #ffd909;
+    font-size: calc(5px + (18-5) * ((100vw - 100px) / (1600 - 100)));
+    padding: 50px 50px;
+    position: absolute;
+    height: 35px;
+    top: calc(80px/2);
+    left: 33px;
+}
+
+.selection_box 
+{
+    position: absolute;
+    top: 15%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 25vh;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(128, 128, 128, 0.7);
+    border-radius: 15%;
+}
+
+.lblDiscipline 
+{
+    font-weight: bold;
+    color: #ffd909;
+    font-size: calc(5px + (16-5) * ((100vw - 100px) / (1600 - 100)));
+    padding: 50px 50px;
+    position: absolute;
+    height: 35px;
+    top: calc(80px / 2);
+    left: calc(20% - 20px);
+}
+
+.lblGender
+{
+    font-weight: bold;
+    color: #ffd909;
+    font-size: calc(5px + (16-5) * ((100vw - 100px) / (1600 - 100)));
+    padding: 50px 50px;
+    position: absolute;
+    height: 35px;
+    top: calc(80px / 2);
+    left: calc(60% - 60px);
+}
+
+.searchListBoxes
+{
+    position: absolute;
+    top: calc(250px / 2);
+    z-index: 1;
+    font-size: calc(5px + (16-5) * ((100vw - 100px) / (1600 - 100)));
+}
+
+.contactForm {
+    font-size: calc(5px + (18-5) * ((100vw - 300px) / (1600 - 300)));
+    position: absolute;
+    height: calc(2.5% - 2.5px);
+}
+
+.txtAbout, .txtNews 
+{
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 70vh;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    resize: none;
+}
+
+.rankingselection_box 
+{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 80vh;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(128, 128, 128, 0.7);
+    border-radius: 15%;
+}
