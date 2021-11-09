@@ -23,11 +23,13 @@ namespace MemShare
             {
                 string password;
                 string sql;
-                string conStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+                string decryptPass;
 
-                SqlConnection con = new SqlConnection(conStr);
+                string sqlStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
 
-                sql = @"SELECT Passwords FROM tblUsers WHERE Email = '" + txtEmail.Text + "'";
+                SqlConnection con = new SqlConnection(sqlStr);
+
+                sql = @"SELECT Password FROM tblUsers WHERE Email = '" + txtEmail.Text + "'";
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 password = txtPassword.Text;
@@ -38,41 +40,22 @@ namespace MemShare
 
                 if (quaryresult != null)
                 {
-                    if (quaryresult.Equals(password))
+                    decryptPass = DecryptString(quaryresult);
+
+                    if (decryptPass.Equals(password))
                     {
-                        sql = @"SELECT Roles FROM tblUsers WHERE Email = '" + txtEmail.Text + "'";
-                        cmd =  new SqlCommand(sql, con);
-
-                        string resultRole = Convert.ToString(cmd.ExecuteScalar());
-
                         HttpCookie isValid = new HttpCookie("isValid");
                         isValid["valid"] = txtEmail.Text;
                         Response.Cookies.Add(isValid);
                         isValid.Expires = DateTime.Now.AddMinutes(30);
 
-                        if (resultRole.Equals("U"))
-                        {
-                            Session["role"] = resultRole;
-                            Session["email"] = txtEmail.Text;
-                            Session["password"] = txtPassword.Text;
+                        Session["email"] = txtEmail.Text;
+                        Session["password"] = txtPassword.Text;
 
-                            cmd.Dispose();
-                            con.Close();
+                        cmd.Dispose();
+                        con.Close();
 
-                            Response.Redirect("Home.aspx");
-                        }
-                        else
-                        {
-                            Session["role"] = resultRole;
-                            Session["email"] = txtEmail.Text;
-                            Session["password"] = txtPassword.Text;
-
-                            cmd.Dispose();
-                            con.Close();
-
-                            Response.Redirect("AdminAbout.aspx");
-                        }
-
+                        Response.Redirect("Home.aspx");
                     }
                     else
                     {
@@ -83,7 +66,7 @@ namespace MemShare
             }
             catch (Exception ex)
             {
-                lblError.Text = "Log in credentials do not match.<br /> Please try again";
+                lblError.Text = "An error occured.<br /> Please try again";
                 lblError.Visible = true;
             }
         }
@@ -96,6 +79,22 @@ namespace MemShare
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("Welcome.aspx");
+        }
+
+        public string DecryptString(string encrString)
+        {
+            byte[] b;
+            string decrypted;
+            try
+            {
+                b = Convert.FromBase64String(encrString);
+                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(b);
+            }
+            catch (FormatException fe)
+            {
+                decrypted = "";
+            }
+            return decrypted;
         }
     }
 }

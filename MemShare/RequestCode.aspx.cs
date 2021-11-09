@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace SAARA_Competition_and_Ranking
+namespace MemShare
 {
     public partial class RequestCode : System.Web.UI.Page
     {
@@ -29,9 +29,9 @@ namespace SAARA_Competition_and_Ranking
             try 
             {
                 string sql;
-                string conStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+                string sqlStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
 
-                SqlConnection con = new SqlConnection(conStr);
+                SqlConnection con = new SqlConnection(sqlStr);
 
                 sql = @"SELECT Email FROM tblUsers WHERE Email = '" + txtEmail.Text + "'";
                 SqlCommand cmd = new SqlCommand(sql, con);
@@ -48,8 +48,8 @@ namespace SAARA_Competition_and_Ranking
                     MailMessage mailMessage = new MailMessage("camerondebastos3@gmail.com", txtEmail.Text);
                     mailMessage.Subject = "Reset Password";
 
-                    mailMessage.Body = "Hello," + Environment.NewLine + Environment.NewLine + "You have requested to reset your password on the SAARA website. Use the code below and enter it on the page where you are now." + Environment.NewLine + Environment.NewLine +"Your unique code: "+uniqueNum + Environment.NewLine +
-                                           Environment.NewLine + "This code is valid for 15 minutes."+ Environment.NewLine  + Environment.NewLine +"Best regards,"+ Environment.NewLine  +"SAARA";
+                    mailMessage.Body = "Hello," + Environment.NewLine + Environment.NewLine + "You have requested to reset your password on the MemShare website. Use the code below and enter it on the page where you are now." + Environment.NewLine + Environment.NewLine +"Your unique code: "+uniqueNum + Environment.NewLine +
+                                           Environment.NewLine + "This code is valid for 15 minutes."+ Environment.NewLine  + Environment.NewLine +"Best regards,"+ Environment.NewLine  +"The MemShare Management Team";
 
                     SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
                     smtpClient.Credentials = new System.Net.NetworkCredential()

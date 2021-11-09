@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="SAARA_Competition_and_Ranking.SignUp" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="MemShare.SignUp" %>
 
 <!DOCTYPE html>
 
@@ -21,9 +21,6 @@
             <asp:Label Text="Surname:*" style="left: calc(65% - 65px); top: calc(25% - 25px); position: absolute;" CssClass="lblName" runat="server" />
             <asp:TextBox ID="txtSurname" style="left: calc(65% - 65px); top: calc(27% - 27px); width:calc(20% - 20px); position: absolute;" runat="server" CssClass="txtName" placeholder="Enter Surname"/>
             <asp:RequiredFieldValidator ID="rfvSurname" runat="server" style="left: calc(72% - 72px); top: calc(25% - 25px);" ErrorMessage="Please provide your surname" ControlToValidate="txtSurname" CssClass="validators" SetFocusOnError="True"></asp:RequiredFieldValidator>
-            <asp:Label Text="Contact Number:*" style="left: calc(20% - 20px); top: calc(42% - 42px); position: absolute;" CssClass="lblName" runat="server" />
-            <asp:TextBox ID="txtContactNo" runat="server" style="left: calc(20% - 20px); top: calc(44% - 44px); width:calc(20% - 20px); position: absolute;" CssClass="txtContactNo" placeholder="Enter Contact Number"/>
-            <asp:RequiredFieldValidator ID="rfvContact" runat="server" style="left: calc(31% - 31px); top: calc(42% - 42px);" ErrorMessage="Please provide your contact number" ControlToValidate="txtContactNo" CssClass="validators" SetFocusOnError="True"></asp:RequiredFieldValidator>
             <asp:Label Text="Email:*" style="left: calc(65% - 65px); top: calc(42% - 42px); position: absolute;" CssClass="lblEmail" runat="server" />
             <asp:TextBox ID="txtEmail" runat="server" style="left: calc(64.75% - 64.75px); top: calc(44% - 44px); width:calc(20% - 20px); position: absolute;" CssClass="txtEmail" placeholder="Enter Email"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvEmail" runat="server" style="left: calc(70% - 70px); top: calc(42% - 42px);" ErrorMessage="Please provide your email" ControlToValidate="txtEmail" CssClass="validators" SetFocusOnError="True"></asp:RequiredFieldValidator>
