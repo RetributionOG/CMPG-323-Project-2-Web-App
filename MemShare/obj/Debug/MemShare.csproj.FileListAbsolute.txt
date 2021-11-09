@@ -80,3 +80,7 @@ C:\Users\camer\Desktop\MemShare\MemShare\bin\EntityFramework.SqlServer.xml
 C:\Users\camer\Desktop\MemShare\MemShare\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
 C:\Users\camer\Desktop\MemShare\MemShare\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml
 C:\Users\camer\Desktop\MemShare\MemShare\obj\Debug\MemShare.csproj.AssemblyReference.cache
+C:\Users\camer\Desktop\MemShare\MemShare\bin\BotDetect.dll
+C:\Users\camer\Desktop\MemShare\MemShare\bin\BotDetect.Web.Mvc.dll
+C:\Users\camer\Desktop\MemShare\MemShare\bin\System.Data.SQLite.dll
+C:\Users\camer\Desktop\MemShare\MemShare\bin\System.Data.SQLite.xml
