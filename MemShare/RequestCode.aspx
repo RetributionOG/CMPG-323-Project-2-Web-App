@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RequestCode.aspx.cs" Inherits="SAARA_Competition_and_Ranking.RequestCode" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RequestCode.aspx.cs" Inherits="MemShare.RequestCode" %>
 
 <!DOCTYPE html>
 

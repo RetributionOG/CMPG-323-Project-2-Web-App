@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace SAARA_Competition_and_Ranking
+namespace MemShare
 {
     public partial class ResetPassword : System.Web.UI.Page
     {
@@ -20,20 +20,23 @@ namespace SAARA_Competition_and_Ranking
 
         protected void btnResetPassword_Click(object sender, EventArgs e)
         {
-            string conStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            string sqlStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
             SqlCommand cmd;
 
             if (txtCode.Text.Equals(Session["Code"].ToString()))
             {
                 if (txtPassword.Text.Equals(txtPasswordConfirm.Text))
                 {
-                    SqlConnection con = new SqlConnection(conStr);
+                    SqlConnection con = new SqlConnection(sqlStr);
                     string sql;
+                    string newEncryptPass;
                     string email;
 
                     email = Session["Email"].ToString();
 
-                    sql = @"UPDATE tblUsers SET Passwords = '" + txtPasswordConfirm.Text + "' WHERE Email = '" + email + "'";
+                    newEncryptPass = encryptpass(txtPasswordConfirm.Text);
+
+                    sql = @"UPDATE tblUsers SET Password = '" + newEncryptPass + "' WHERE Email = '" + email + "'";
 
                     con.Open();
 
@@ -45,8 +48,8 @@ namespace SAARA_Competition_and_Ranking
                     MailMessage mailMessage = new MailMessage("camerondebastos3@gmail.com", email);
                     mailMessage.Subject = "Password Reset Successful";
 
-                    mailMessage.Body = "Hello," + Environment.NewLine + Environment.NewLine + "Your request to reset your password on the SAARA website has been successfully completed."+
-                                           Environment.NewLine + Environment.NewLine + "Best regards," + Environment.NewLine + "SAARA";
+                    mailMessage.Body = "Hello," + Environment.NewLine + Environment.NewLine + "Your request to reset your password on the MemShare website has been successfully completed."+
+                                           Environment.NewLine + Environment.NewLine + "Best regards," + Environment.NewLine + "The MemShare Management Team";
 
                     SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
                     smtpClient.Credentials = new System.Net.NetworkCredential()
@@ -77,6 +80,13 @@ namespace SAARA_Competition_and_Ranking
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");
+        }
+
+        public string encryptpass(string password)
+        {
+            byte[] b = System.Text.ASCIIEncoding.ASCII.GetBytes(password);
+            string encrypted = Convert.ToBase64String(b);
+            return encrypted;
         }
     }
 }

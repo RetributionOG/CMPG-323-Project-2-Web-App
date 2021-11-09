@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SAARA_Competition_and_Ranking
+namespace MemShare
 {
 
 

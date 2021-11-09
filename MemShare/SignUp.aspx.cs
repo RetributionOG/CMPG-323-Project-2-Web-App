@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Text;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace SAARA_Competition_and_Ranking
+namespace MemShare
 {
     public partial class SignUp : System.Web.UI.Page
     {
@@ -25,8 +26,9 @@ namespace SAARA_Competition_and_Ranking
         {
             string email;
             string sql;
+            string encryptedPass;
 
-            string conStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            string sqlStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
 
             msgCaptcha.UserInputID = CaptchaCode.ClientID;
 
@@ -40,7 +42,7 @@ namespace SAARA_Competition_and_Ranking
                 {
                     lblCaptchaError.Visible = false;
 
-                    SqlConnection con = new SqlConnection(conStr);
+                    SqlConnection con = new SqlConnection(sqlStr);
 
                     sql = @"SELECT Email FROM tblUsers WHERE Email = '" + txtEmail.Text + "'";
                     SqlCommand cmd = new SqlCommand(sql, con);
@@ -53,7 +55,9 @@ namespace SAARA_Competition_and_Ranking
 
                     if (!quaryresult.Equals(email))
                     {
-                        sql = @"INSERT INTO dbo.tblUsers VALUES ('" + txtEmail.Text + "', '" + txtPassword.Text + "', 'U','" + txtName.Text + "','" + txtSurname.Text + "','" + txtContactNo.Text + "')";
+                        encryptedPass = encryptpass(txtPassword.Text);
+
+                        sql = @"INSERT INTO dbo.tblUsers ([Name], [Surname], [Email], [Password]) VALUES ('" + txtName.Text + "', '" + txtSurname.Text + "', '" + txtEmail.Text + "', '" + encryptedPass + "')";
                         cmd = new SqlCommand(sql, con);
 
                         cmd.ExecuteNonQuery();
@@ -78,6 +82,13 @@ namespace SAARA_Competition_and_Ranking
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("Welcome.aspx");
+        }
+
+        public string encryptpass(string password)
+        {
+            byte[] b = System.Text.ASCIIEncoding.ASCII.GetBytes(password);
+            string encrypted = Convert.ToBase64String(b);
+            return encrypted;
         }
     }
 }
