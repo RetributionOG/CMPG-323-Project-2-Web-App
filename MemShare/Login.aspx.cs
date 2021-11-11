@@ -19,6 +19,7 @@ namespace MemShare
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 string password;
