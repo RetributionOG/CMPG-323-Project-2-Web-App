@@ -23,7 +23,7 @@ namespace MemShare
             {
                 string password;
                 string sql;
-                string decryptPass;
+                string encryptPass;
 
                 string sqlStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
 
@@ -40,9 +40,9 @@ namespace MemShare
 
                 if (quaryresult != null)
                 {
-                    decryptPass = DecryptString(quaryresult);
+                    encryptPass = encryptpass(password);
 
-                    if (decryptPass.Equals(password))
+                    if (encryptPass.Equals(quaryresult))
                     {
                         HttpCookie isValid = new HttpCookie("isValid");
                         isValid["valid"] = txtEmail.Text;
@@ -81,20 +81,11 @@ namespace MemShare
             Response.Redirect("Welcome.aspx");
         }
 
-        public string DecryptString(string encrString)
+        public string encryptpass(string password)
         {
-            byte[] b;
-            string decrypted;
-            try
-            {
-                b = Convert.FromBase64String(encrString);
-                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(b);
-            }
-            catch (FormatException fe)
-            {
-                decrypted = "";
-            }
-            return decrypted;
+            byte[] b = System.Text.ASCIIEncoding.ASCII.GetBytes(password);
+            string encrypted = Convert.ToBase64String(b);
+            return encrypted;
         }
     }
 }
