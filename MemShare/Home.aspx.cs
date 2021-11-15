@@ -77,9 +77,11 @@ namespace MemShare
         
         protected void btnAddPhoto_Click1(object sender, EventArgs e)
         {
+           
+
             try
             {
-                int userId = getUserId();
+                //int userId = getUserId();
                 string path;
                 if (FileUpload1.HasFile == false)
                 {
@@ -90,19 +92,18 @@ namespace MemShare
                 {
 
 
-
                     if (FileUpload1.HasFile)
                         FileUpload1.SaveAs(HttpContext.Current.Request.PhysicalApplicationPath + "/Images/" + FileUpload1.FileName);
                     path = FileUpload1.FileName;
 
+                    Session["photo"] = path;
 
-                    SqlConnection con = new SqlConnection(sqlStr);
-                    SqlCommand cmd = new SqlCommand("INSERT INTO tblPhotos VALUES(@Photo, @UserId)", con);
-                    cmd.Parameters.AddWithValue("@Photo", path);
-                    cmd.Parameters.AddWithValue("@UserId", userId);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    
+
+                    Response.Redirect("MetaData.aspx");
+
+
+
                 }
 
             }
@@ -116,6 +117,240 @@ namespace MemShare
         protected void btnViewPhotos_Click(object sender, EventArgs e)
         {
             fill();
+        }
+
+        protected void btnDeletePhoto_Click(object sender, EventArgs e)
+        {
+            if (txtphotoId.Text == "")
+            {
+                Response.Write("<script>alert('Please enter a photo ID')</script>");
+
+            }
+            else
+            {
+                try
+                {
+                    SqlConnection con = new SqlConnection(sqlStr);
+                    
+                    con.Open();
+                    SqlCommand comm;
+                    string delete = "DELETE FROM tblPhotos WHERE photoId = '" + txtphotoId.Text + "'";
+                    comm = new SqlCommand(delete, con);
+                    comm.ExecuteNonQuery();
+                    con.Close();
+                    fill();
+                    //DisplayAll();
+                }
+                catch
+                {
+                    Response.Write("<script>alert('A delete error error occured')</script>");
+                }
+            }
+        }
+
+        private string getGeolocation()
+        {
+            
+            string geolocation = "";
+            try
+            {
+                SqlConnection con = new SqlConnection(sqlStr);
+                con.Open();
+                SqlCommand cmd;
+                string geoloc = "SELECT Geolocation FROM tblMetaData WHERE PhotoId = '" + txtphotoId.Text + "'";
+                cmd = new SqlCommand(geoloc, con);
+                geolocation = cmd.ExecuteScalar().ToString();
+
+            }
+            catch
+            {
+                Response.Write("<script>alert('Connection error')</script>");
+                //return "";
+            }
+            return geolocation;
+
+        }
+
+        private string getTags()
+        {
+            string tags = "";
+            try
+            {
+                SqlConnection con = new SqlConnection(sqlStr);
+                con.Open();
+                SqlCommand cmd;
+                string tag = "SELECT Tags FROM tblMetaData WHERE PhotoId = '" + txtphotoId.Text + "'";
+                cmd = new SqlCommand(tag, con);
+                tags = cmd.ExecuteScalar().ToString();
+                
+            }
+            catch
+            {
+                Response.Write("<script>alert('Connection error')</script>");
+                //return tags;
+            }
+            return tags;    
+        }
+
+        private string getCaptureDate()
+        {
+            string date = "";
+            try
+            {
+                SqlConnection con = new SqlConnection(sqlStr);
+                con.Open();
+                SqlCommand cmd;
+                string capDate = "SELECT CaptureDate FROM tblMetaData WHERE PhotoId = '" + txtphotoId.Text + "'";
+                cmd = new SqlCommand(capDate, con);
+                date = cmd.ExecuteScalar().ToString();
+                //return date;
+            }
+            catch
+            {
+                Response.Write("<script>alert('Connection error')</script>");
+                //return "";
+            }
+            return date;
+
+        }
+
+        private string getCaptureBy()
+        {
+            string captureBy = "";
+            try
+            {
+                SqlConnection con = new SqlConnection(sqlStr);
+                con.Open();
+                SqlCommand cmd;
+                string capDy = "SELECT CaptureBy FROM tblMetaData WHERE PhotoId = '" + txtphotoId.Text + "'";
+                cmd = new SqlCommand(capDy, con);
+                captureBy = cmd.ExecuteScalar().ToString();
+                //return captureBy;
+            }
+            catch
+            {
+                Response.Write("<script>alert('Connection error')</script>");
+                //return "";
+            }
+            return captureBy;
+
+        }
+
+        private string getPhotoId()
+        {
+            
+            try
+            {
+                bool flag = false;
+                SqlConnection con = new SqlConnection(sqlStr);
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "SELECT * FROM [tblMetaData]";
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+                while (rd.Read())
+                {
+                    if (rd[1].ToString() == txtphotoId.Text)
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if(flag == true)
+                    return txtphotoId.Text;
+                else
+                {
+                    return "";
+                }
+            }
+            catch
+            {
+                Response.Write("<script>alert('Connection error')</script>");
+                return "";
+            }
+            //return photoid;
+
+        }
+
+
+
+        protected void btnViewMetaData_Click(object sender, EventArgs e)
+        {
+            string photoid = getPhotoId();
+            if (txtphotoId.Text == "")
+            {
+                Response.Write("<script>alert('Please enter photo ID')</script>");
+            }
+           else if(photoid == "")
+            {
+                lblGeolocation.Text = "Geolocation: None";
+                lblTags.Text = "Tags: None";
+                lblCaptureDate.Text = "Capture date: None";
+                lblCaptureBy.Text = "Capture by: None";
+            }
+            else
+            {
+                string location = getGeolocation();
+                if (location == "")
+                {
+                    lblGeolocation.Text = "Geolocation: None";
+                }
+                else
+                {
+                    lblGeolocation.Text = "Geolocation: " + location;
+                }
+
+                string tags = getTags();
+                if (tags == "")
+                {
+                    lblTags.Text = "Tags: None";
+                }
+                else
+                {
+                    lblTags.Text = "Tags: " + tags;
+                }
+
+                string date = getCaptureDate();
+                if (date == "")
+                {
+                    lblCaptureDate.Text = "Capture date: None";
+                }
+                else
+                {
+                    lblCaptureDate.Text = "Capture date: " + date;
+                }
+
+                string capBy = getCaptureBy();
+                if (capBy == "")
+                {
+                    lblCaptureBy.Text = "Capture by: None";
+                }
+                else
+                {
+                    lblCaptureBy.Text = "Capture by: " + capBy;
+                }
+            }
+
+
+        }
+
+        protected void btnDeleteMetaData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(sqlStr);
+
+                con.Open();
+                SqlCommand comm;
+                string delete = "DELETE FROM tblMetaData WHERE PhotoId = '" + txtphotoId.Text + "'";
+                comm = new SqlCommand(delete, con);
+                comm.ExecuteNonQuery();
+                con.Close();
+            }
+            catch
+            {
+                Response.Write("<script>alert('Connection error')</script>");
+            }
         }
     }
 }

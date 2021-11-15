@@ -169,6 +169,7 @@
     <Content Include="Images\Login.png" />
     <Content Include="Images\Main Background.jpg" />
     <Content Include="Login.aspx" />
+    <Content Include="MetaData.aspx" />
     <Content Include="RequestCode.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -225,6 +226,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MetaData.aspx.cs">
+      <DependentUpon>MetaData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MetaData.aspx.designer.cs">
+      <DependentUpon>MetaData.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestCode.aspx.cs">
