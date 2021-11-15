@@ -34,19 +34,24 @@ namespace MemShare
                 //insert data into photo table
                 int userId = getUserId();
                 string path = (Session["photo"].ToString());
+                int albumId = 0;
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO tblPhotos VALUES(@Photo, @UserId)", con);
+                //SqlCommand cmd = new SqlCommand("INSERT INTO tblPhotos VALUES(@Photo, @UserId, @AlbumId)", con);
 
-                con.Open();
-                cmd.Parameters.AddWithValue("@Photo", path);
-                cmd.Parameters.AddWithValue("@UserId", userId);
-                cmd.ExecuteNonQuery();
+                //con.Open();
+                //cmd.Parameters.AddWithValue("@Photo", path);
+                //cmd.Parameters.AddWithValue("@UserId", userId);
+                //cmd.Parameters.AddWithValue("@AlbumId", albumId);
+                //cmd.ExecuteNonQuery();
+                //con.Close();
 
                 //insert values in procedure
+                con.Open();
                 SqlCommand sqlcmd = new SqlCommand("photolastid", con);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 sqlcmd.Parameters.AddWithValue("@Photo", path);
                 sqlcmd.Parameters.AddWithValue("@UserId", userId);
+                sqlcmd.Parameters.AddWithValue("@AlbumId", albumId);
                 sqlcmd.Parameters.Add("@photoId", SqlDbType.Int).Direction = ParameterDirection.Output;
                 sqlcmd.ExecuteNonQuery();
 
