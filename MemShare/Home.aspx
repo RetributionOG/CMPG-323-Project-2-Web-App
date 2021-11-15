@@ -38,6 +38,15 @@
 
 
         }
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 527px;
+        }
+        .auto-style3 {
+            width: 241px;
+        }
         </style>
     <title></title>
     </head>
@@ -46,10 +55,8 @@
     <div>
         <asp:Label ID="lblWelcome" runat="server" Text="Welcome"></asp:Label>
         <br />
-        <asp:Button ID="btnAddPhoto" runat="server" CssClass="roundedcorner" Font-Size="Larger" Text="Add photo" OnClick="btnAddPhoto_Click1" Height="41px" Width="160px" />
         <br />
         <br />
-        <asp:FileUpload ID="FileUpload1" runat="server" />
         <br />
         <br />
         <br />
@@ -58,14 +65,60 @@
         <br />
         <br />
         <br />
-        <asp:Image ID="Image1" runat="server" Height="143px" Width="190px" />
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style2">
+        <asp:FileUpload ID="FileUpload1" runat="server" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnAddPhoto" runat="server" CssClass="roundedcorner" Font-Size="Small" Text="Add photo" OnClick="btnAddPhoto_Click1" Height="32px" Width="121px" />
+                </td>
+                <td class="auto-style3">&nbsp;&nbsp;
+                    <asp:Button ID="btnViewMetaData" runat="server" OnClick="btnViewMetaData_Click" Text="View Meta data" />
+                </td>
+                <td>
+                    <asp:Button ID="btnDeleteMetaData" runat="server" OnClick="btnDeleteMetaData_Click" Text="Delete MetaData" />
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    <asp:Label ID="Label3" runat="server" Text="Enter photo id: "></asp:Label>
+                    <asp:TextBox ID="txtphotoId" runat="server"></asp:TextBox>
+&nbsp;&nbsp;
+                    <asp:Button ID="btnDeletePhoto" runat="server" OnClick="btnDeletePhoto_Click" Text="Delete photo" />
+                </td>
+                <td class="auto-style3">
+                    <asp:Label ID="lblGeolocation" runat="server" Text="Geolocation: "></asp:Label>
+&nbsp;&nbsp; </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">&nbsp;</td>
+                <td class="auto-style3">
+                    <asp:Label ID="lblTags" runat="server" Text="Tags: "></asp:Label>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">&nbsp;</td>
+                <td class="auto-style3">
+                    <asp:Label ID="lblCaptureDate" runat="server" Text="Capture date: "></asp:Label>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">&nbsp;</td>
+                <td class="auto-style3">
+                    <asp:Label ID="lblCaptureBy" runat="server" Text="Capture by: "></asp:Label>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
         <br />
 
     </div>
         <div>
             <asp:DataList ID="DataList1" runat="server">
             <ItemTemplate>
-                <%--<asp:Label ID="Label1" runat="server" Text='<%#Eval("PhotoId") %>'></asp:Label>--%>
                 <image src ="Images/<%#Eval("Photo")%>" height ="150" width ="180" />
             </ItemTemplate>
         </asp:DataList>
