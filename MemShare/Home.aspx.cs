@@ -352,5 +352,10 @@ namespace MemShare
                 Response.Write("<script>alert('Connection error')</script>");
             }
         }
+
+        protected void btnAlbums_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Albums.aspx");
+        }
     }
 }

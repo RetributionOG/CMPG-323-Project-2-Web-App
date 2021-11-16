@@ -127,6 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Albums.aspx" />
     <Content Include="Container-sm\css\bootstrap-grid.css" />
     <Content Include="Container-sm\css\bootstrap-grid.min.css" />
     <Content Include="Container-sm\css\bootstrap-reboot.css" />
@@ -145,6 +146,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Gallery.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -170,6 +172,7 @@
     <Content Include="Images\Main Background.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="MetaData.aspx" />
+    <Content Include="PhotoGallery.aspx" />
     <Content Include="RequestCode.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -208,8 +211,22 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Albums.aspx.cs">
+      <DependentUpon>Albums.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Albums.aspx.designer.cs">
+      <DependentUpon>Albums.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Gallery.aspx.cs">
+      <DependentUpon>Gallery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gallery.aspx.designer.cs">
+      <DependentUpon>Gallery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,6 +250,13 @@
     </Compile>
     <Compile Include="MetaData.aspx.designer.cs">
       <DependentUpon>MetaData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoGallery.aspx.cs">
+      <DependentUpon>PhotoGallery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhotoGallery.aspx.designer.cs">
+      <DependentUpon>PhotoGallery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestCode.aspx.cs">

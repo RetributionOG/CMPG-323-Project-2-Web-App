@@ -68,8 +68,7 @@
                     <td class="auto-style6">Add metadata to your photo</td>
                     <td class="auto-style7"></td>
                     <td class="auto-style8">
-                        <asp:Label ID="lbltest" runat="server" Text="lbltest"></asp:Label>
-                    </td>
+                        &nbsp;</td>
                     <td class="auto-style8"></td>
                 </tr>
                 <tr>

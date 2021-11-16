@@ -71,6 +71,7 @@
         <asp:FileUpload ID="FileUpload1" runat="server" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnAddPhoto" runat="server" CssClass="roundedcorner" Font-Size="Small" Text="Add photo" OnClick="btnAddPhoto_Click1" Height="32px" Width="121px" />
+                    <asp:Button ID="btnAlbums" runat="server" OnClick="btnAlbums_Click" Text="View Albums" />
                 </td>
                 <td class="auto-style3">&nbsp;&nbsp;
                     <asp:Button ID="btnViewMetaData" runat="server" OnClick="btnViewMetaData_Click" Text="View Meta data" />
