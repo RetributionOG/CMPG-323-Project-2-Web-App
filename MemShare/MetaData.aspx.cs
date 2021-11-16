@@ -57,7 +57,6 @@ namespace MemShare
 
                 //get photoid of newly inserted photo
                 string photoid = sqlcmd.Parameters["@photoId"].Value.ToString();
-                lbltest.Text = photoid;
                 con.Close();
 
                 //insert data into the metadata table
