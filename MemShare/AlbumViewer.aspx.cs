@@ -10,9 +10,10 @@ using System.Configuration;
 
 namespace MemShare
 {
-    public partial class PhotoGallery : System.Web.UI.Page
+    public partial class AlbumViewer : System.Web.UI.Page
     {
         string sqlStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -11,7 +11,7 @@ namespace MemShare
 {
 
 
-    public partial class PhotoGallery
+    public partial class AlbumViewer
     {
 
         /// <summary>

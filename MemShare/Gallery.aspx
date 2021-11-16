@@ -38,7 +38,7 @@
                 <table>
                 <tr>
                 <td>
-                    <asp:Image ID="Image3" runat="server" ImageUrl='<%# Eval("Photo","/Images/{0}") %>' Height="300px" Width="300px" /></td>                  
+                    <asp:Image ID="Image3" runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>' Height="300px" Width="300px" /></td>                  
                 </tr>
                 </table>
                 </ItemTemplate>

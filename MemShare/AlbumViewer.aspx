@@ -1,10 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PhotoGallery.aspx.cs" Inherits="MemShare.PhotoGallery" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AlbumViewer.aspx.cs" Inherits="MemShare.AlbumViewer" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title></title>
     <style>
      table tr td
      {
@@ -20,7 +19,7 @@
     margin: 5px;
      }
      </style>
-     <link href="css/colorbox.css" rel="stylesheet" type="text/css" />
+    <link href="css/colorbox.css" rel="stylesheet" type="text/css" />
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
                         <script src="js/jquery.colorbox.js"></script>
         <script>
@@ -36,7 +35,7 @@
     <form id="form1" runat="server">
     <div style="margin-left:30px">
     <table>
-    <tr><td><asp:Button ID="btnalbum" runat="server" Text="Create New Album" /></td><td></td><td><asp:Button ID="Button1" runat="server" Text="Add More photo" /> </td></tr>
+    <tr><td><asp:Button ID="btnalbum" runat="server" Text="Create New Album" OnClick="btnalbum_Click"/></td><td></td><td><asp:Button ID="Button1" runat="server" Text="Add More photo" OnClick="Button1_Click"/> </td></tr>
    <tr><td></td><td></td><td></td></tr>
     <tr><td></td><td></td><td></td></tr>
     </table>
@@ -44,7 +43,7 @@
         <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="5">
          <ItemTemplate>
          <table>
-         <tr><td> <a href='<%# Eval("Photo","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("Photo","/Images/{0}") %>'  Height="150px" Width="200px"/>
+         <tr><td> <a href='<%# Eval("PhotoPath","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>'  Height="150px" Width="200px"/>
                  </a></td></tr>
           <tr><td><asp:Label ID="lbldescription" runat="server" Text='<%# Eval("photo") %>'></asp:Label></td></tr>
          </table>             

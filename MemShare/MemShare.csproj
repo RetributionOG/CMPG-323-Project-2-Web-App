@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Albums.aspx" />
+    <Content Include="AlbumViewer.aspx" />
     <Content Include="Container-sm\css\bootstrap-grid.css" />
     <Content Include="Container-sm\css\bootstrap-grid.min.css" />
     <Content Include="Container-sm\css\bootstrap-reboot.css" />
@@ -172,7 +173,6 @@
     <Content Include="Images\Main Background.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="MetaData.aspx" />
-    <Content Include="PhotoGallery.aspx" />
     <Content Include="RequestCode.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -218,6 +218,13 @@
     <Compile Include="Albums.aspx.designer.cs">
       <DependentUpon>Albums.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AlbumViewer.aspx.cs">
+      <DependentUpon>AlbumViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlbumViewer.aspx.designer.cs">
+      <DependentUpon>AlbumViewer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Gallery.aspx.cs">
@@ -250,13 +257,6 @@
     </Compile>
     <Compile Include="MetaData.aspx.designer.cs">
       <DependentUpon>MetaData.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PhotoGallery.aspx.cs">
-      <DependentUpon>PhotoGallery.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PhotoGallery.aspx.designer.cs">
-      <DependentUpon>PhotoGallery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestCode.aspx.cs">
