@@ -10,8 +10,8 @@ using System.Data;
 
 namespace MemShare
 {
-	public partial class Albums : System.Web.UI.Page
-	{
+    public partial class Albums : System.Web.UI.Page
+    {
         string sqlStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,6 +26,7 @@ namespace MemShare
             SqlConnection con = new SqlConnection(sqlStr);
             SqlDataAdapter adp = new SqlDataAdapter("GetAlbum", con);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@useremail", Session["email"]);
             DataTable dt = new DataTable();
             adp.Fill(dt);
             DataList1.DataSource = dt;
@@ -55,7 +56,7 @@ namespace MemShare
                 cmd.Parameters["@AlbumId"].Direction = ParameterDirection.Output;
                 cmd.ExecuteNonQuery();
                 Session["albumid"] = cmd.Parameters["@AlbumId"].Value;
-                Response.Redirect("PhotoGallery.aspx");
+                Response.Redirect("Gallery.aspx");
                 con.Close();
             }
             catch (Exception ex)
@@ -68,7 +69,7 @@ namespace MemShare
         {
             int id = Convert.ToInt32(DataList1.DataKeys[e.Item.ItemIndex].ToString());
             Session["albumid"] = id;
-            Response.Redirect("gallery.aspx");
+            Response.Redirect("AlbumViewer.aspx");
         }
     }
 }

@@ -33,7 +33,7 @@ namespace MemShare
             SqlCommand cmd = new SqlCommand("InsertPhoto", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@albumid", Convert.ToInt32(Session["albumid"].ToString()));
-            cmd.Parameters.AddWithValue("@photo", newpath);
+            cmd.Parameters.AddWithValue("@photopath", newpath);
             cmd.Parameters.AddWithValue("@userid", UserId);
             cmd.Parameters.Add("@id", SqlDbType.Int);
             cmd.Parameters["@id"].Direction = ParameterDirection.Output;
@@ -68,7 +68,7 @@ namespace MemShare
 
         protected void btngallery_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("PhotoGallery.aspx");
+            Response.Redirect("AlbumViewer.aspx");
         }
 
         protected void btncreate_Click1(object sender, EventArgs e)
