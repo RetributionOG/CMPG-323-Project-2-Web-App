@@ -18,10 +18,10 @@ namespace MemShare
         {
             if (!IsPostBack)
             {
-                Binddatalist();
+                BindDatalist();
             }
         }
-        public void Binddatalist()
+        public void BindDatalist()
         {
             SqlConnection con = new SqlConnection(sqlStr);
             SqlDataAdapter adp = new SqlDataAdapter("GetAlbum", con);
@@ -29,11 +29,11 @@ namespace MemShare
             adp.SelectCommand.Parameters.AddWithValue("@useremail", Session["email"]);
             DataTable dt = new DataTable();
             adp.Fill(dt);
-            DataList1.DataSource = dt;
-            DataList1.DataBind();
+            dlImages.DataSource = dt;
+            dlImages.DataBind();
         }
 
-        protected void btncreate_Click(object sender, EventArgs e)
+        protected void btnCreate_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(sqlStr);
 
@@ -65,9 +65,9 @@ namespace MemShare
             }
         }
 
-        protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
+        protected void dlImages_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            int id = Convert.ToInt32(DataList1.DataKeys[e.Item.ItemIndex].ToString());
+            int id = Convert.ToInt32(dlImages.DataKeys[e.Item.ItemIndex].ToString());
             Session["albumid"] = id;
             Response.Redirect("AlbumViewer.aspx");
         }
