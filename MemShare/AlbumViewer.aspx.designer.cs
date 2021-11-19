@@ -33,22 +33,22 @@ namespace MemShare
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// btnalbum control.
+        /// btnAlbum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnalbum;
+        protected global::System.Web.UI.WebControls.Button btnAlbum;
 
         /// <summary>
-        /// Button1 control.
+        /// btnMore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnMore;
 
         /// <summary>
         /// dlimage control.

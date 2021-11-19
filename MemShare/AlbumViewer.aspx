@@ -35,7 +35,7 @@
     <form id="form1" runat="server">
     <div style="margin-left:30px">
     <table>
-    <tr><td><asp:Button ID="btnalbum" runat="server" Text="Create New Album" OnClick="btnalbum_Click"/></td><td></td><td><asp:Button ID="Button1" runat="server" Text="Add More photo" OnClick="Button1_Click"/> </td></tr>
+    <tr><td><asp:Button ID="btnAlbum" runat="server" Text="Create New Album" OnClick="btnAlbum_Click"/></td><td></td><td><asp:Button ID="btnMore" runat="server" Text="Add More Photos" OnClick="btnMore_Click"/> </td></tr>
    <tr><td></td><td></td><td></td></tr>
     <tr><td></td><td></td><td></td></tr>
     </table>

@@ -34,12 +34,12 @@ namespace MemShare
             dlimage.DataBind();
         }
 
-        protected void btnalbum_Click(object sender, EventArgs e)
+        protected void btnAlbum_Click(object sender, EventArgs e)
         {
             Response.Redirect("Albums.aspx");
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnMore_Click(object sender, EventArgs e)
         {
             Response.Redirect("Gallery.aspx");
         }

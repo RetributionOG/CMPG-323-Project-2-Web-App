@@ -29,13 +29,13 @@
      <tr><td></td><td></td></tr>
     <tr><td>Upload Cover :</td><td> <asp:FileUpload ID="albumcover" runat="server" /></td></tr>
      <tr><td></td><td></td></tr>
-    <tr><td></td><td> <asp:Button ID="btncreate" runat="server" Text="Create Album" OnClick="btncreate_Click"
+    <tr><td></td><td> <asp:Button ID="btncreate" runat="server" Text="Create Album" OnClick="btnCreate_Click"
              /></td></tr>
     <tr><td></td><td></td></tr>
     <tr><td></td><td></td></tr>
     </table>
-    <asp:DataList ID="DataList1" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="4"
-            onitemcommand="DataList1_ItemCommand">         
+    <asp:DataList ID="dlImages" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="4"
+            onitemcommand="dlImages_ItemCommand">         
             <AlternatingItemStyle Font-Bold="False" Font-Italic="False"
                 Font-Overline="False" Font-Strikeout="False" Font-Underline="False" />
             <ItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False"

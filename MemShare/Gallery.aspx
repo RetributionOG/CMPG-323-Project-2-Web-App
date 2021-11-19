@@ -10,35 +10,35 @@
     <form id="form1" runat="server">
     <div style="margin-left:50px">
    <table>
-    <tr> <td><asp:Button ID="btngallery" runat="server" Text="View Album" OnClick="btngallery_Click1"
+    <tr> <td><asp:Button ID="btnGallery" runat="server" Text="View Album" OnClick="btnGallery_Click"
                  /></td><td>
-                 <asp:Button ID="btncreate" runat="server" Text="Create Album" OnClick="btncreate_Click1"
+                 <asp:Button ID="btnCreate" runat="server" Text="Create New Album" OnClick="btnCreate_Click"
                       /></td> </tr>
                         <tr><td></td><td></td></tr>
                       <tr><td></td><td></td></tr>
                        <tr><td></td><td></td></tr>
    </table>
      <table style="margin-top:30px">   
-     <tr><td>Upload Image to Album :</td><td> <asp:FileUpload ID="FileUpload1" runat="server" />
+     <tr><td>Upload Image to Album :</td><td> <asp:FileUpload ID="FileUpload" runat="server" />
         </td></tr>
             <tr><td></td><td></td></tr>
-            <tr><td></td><td><asp:Button ID="Button1" runat="server"
-            Text="Upload image" onclick="Button1_Click" /></td></tr>
+            <tr><td></td><td><asp:Button ID="btnUpload" runat="server"
+            Text="Upload image" onclick="btnUpload_Click" /></td></tr>
             <tr><td></td><td></td></tr>
      </table>
-     <asp:ScriptManager ID="ScriptManager1" runat="server">
+     <asp:ScriptManager ID="sctController" runat="server">
         </asp:ScriptManager>   
-    <asp:UpdatePanel ID="updatepanel1" runat="server" UpdateMode="Conditional">
+    <asp:UpdatePanel ID="pnlUpdate" runat="server" UpdateMode="Conditional">
             <ContentTemplate>  
    
-        <asp:GridView ID="grdphoto" runat="server" AutoGenerateColumns="false" DataKeyNames="PhotoID">
+        <asp:GridView ID="grdPhoto" runat="server" AutoGenerateColumns="false" DataKeyNames="PhotoID">
         <Columns>
        <asp:TemplateField>
                 <ItemTemplate>
                 <table>
                 <tr>
                 <td>
-                    <asp:Image ID="Image3" runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>' Height="300px" Width="300px" /></td>                  
+                    <asp:Image ID="imgPreview" runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>' Height="300px" Width="300px" /></td>                  
                 </tr>
                 </table>
                 </ItemTemplate>
@@ -48,7 +48,7 @@
                  <table>
                  <tr><td>Enter Description :</td></tr>
                  <tr>
-                    <td><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> </td> </tr>
+                    <td><asp:TextBox ID="txtDescription" runat="server"></asp:TextBox> </td> </tr>
                     </table>
                 </ItemTemplate>
                 </asp:TemplateField>
@@ -56,7 +56,7 @@
         </asp:GridView>
         </ContentTemplate>  
 </asp:UpdatePanel>
-         <table><tr><td><asp:Button ID="btnsave" runat="server" Text="Save" OnClick="btnsave_Click" /></td></tr></table>
+         <table><tr><td><asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" /></td></tr></table>
         <br />
         <br />
     </div>
