@@ -34,7 +34,7 @@
     <tr><td></td><td></td></tr>
     <tr><td></td><td></td></tr>
     </table>
-    <asp:DataList ID="dlImages" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="4"
+    <asp:DataList ID="dlImages" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8"
             onitemcommand="dlImages_ItemCommand">         
             <AlternatingItemStyle Font-Bold="False" Font-Italic="False"
                 Font-Overline="False" Font-Strikeout="False" Font-Underline="False" />
