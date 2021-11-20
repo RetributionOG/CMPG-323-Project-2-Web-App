@@ -85,7 +85,6 @@ C:\Users\Annika\Source\Repos\RetributionOG\CMPG-323-Project-2-Web-App\MemShare\o
 C:\Users\Annika\Source\Repos\RetributionOG\CMPG-323-Project-2-Web-App\MemShare\obj\Debug\MemShare.pdb
 C:\Users\Annika\source\repos\RetributionOG\CMPG-323-Project-2-Web-App\MemShare\obj\Debug\MemShare.csproj.AssemblyReference.cache
 C:\Users\camer\Desktop\MemShare\MemShare\obj\Debug\MemShare.csproj.CoreCompileInputs.cache
-C:\Users\camer\Desktop\MemShare\MemShare\obj\Debug\MemShare.csproj.AssemblyReference.cache
 C:\Users\camer\Desktop\MemShare\MemShare\bin\MemShare.dll.config
 C:\Users\camer\Desktop\MemShare\MemShare\bin\MemShare.dll
 C:\Users\camer\Desktop\MemShare\MemShare\bin\MemShare.pdb
@@ -170,3 +169,4 @@ C:\Users\camer\Desktop\MemShare\MemShare\bin\Microsoft.CodeDom.Providers.DotNetC
 C:\Users\camer\Desktop\MemShare\MemShare\obj\Debug\MemShare.csproj.CopyComplete
 C:\Users\camer\Desktop\MemShare\MemShare\obj\Debug\MemShare.dll
 C:\Users\camer\Desktop\MemShare\MemShare\obj\Debug\MemShare.pdb
+C:\Users\camer\Desktop\MemShare\MemShare\obj\Debug\MemShare.csproj.AssemblyReference.cache

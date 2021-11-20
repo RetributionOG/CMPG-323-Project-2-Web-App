@@ -47,7 +47,28 @@
         .auto-style3 {
             width: 241px;
         }
-        </style>
+        table tr td
+        {
+             text-align: center;
+             margin-bottom:10px;
+        }
+        a{ text-decoration: none;}
+        img
+        {
+            padding: 4px;
+            border: 2px solid #000;
+            border-radius: 12px;
+            margin: 5px;
+        }
+     </style>
+    <link href="css/colorbox.css" rel="stylesheet" type="text/css" />
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+                        <script src="js/jquery.colorbox.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(".test").colorbox({ rel: 'group1', transition: "none", width: "700px " });
+            });
+        </script>
     <title></title>
     </head>
 <body style="height: 587px; width: 1309px">
@@ -90,7 +111,9 @@
                 <td class="auto-style3">
                     <asp:Label ID="lblGeolocation" runat="server" Text="Geolocation: "></asp:Label>
 &nbsp;&nbsp; </td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:Button ID="btnUpdateMetaData" runat="server" OnClick="btnUpdateMetaData_Click" Text="Update Meta data" />
+                </td>
             </tr>
             <tr>
                 <td class="auto-style2">&nbsp;</td>
@@ -118,11 +141,15 @@
 
     </div>
         <div>
-            <asp:DataList ID="DataList1" runat="server">
-            <ItemTemplate>
-                <image src ="Images/<%#Eval("Photo")%>" height ="150" width ="180" />
-            </ItemTemplate>
-        </asp:DataList>
+            <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8" onitemcommand="dlimage_ItemCommand">
+         <ItemTemplate>
+         <table>
+         <tr><td> <a href='<%# Eval("PhotoPath","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>'  Height="150px" Width="200px"/>
+                 </a></td></tr>
+          <tr><td><asp:LinkButton ID="lbtDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("PhotoId") %>'></asp:LinkButton></asp:Label></td></tr>
+         </table>             
+                  </ItemTemplate>  
+        </asp:DataList> 
         </div>
     </form>
     </body>

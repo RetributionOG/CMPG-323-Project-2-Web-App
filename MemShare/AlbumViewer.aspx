@@ -24,7 +24,6 @@
                         <script src="js/jquery.colorbox.js"></script>
         <script>
             $(document).ready(function () {
-                //Examples of how to assign the ColorBox event to elements
                 $(".test").colorbox({ rel: 'group1', transition: "none", width: "700px " });
             });
         </script>
@@ -40,12 +39,12 @@
     <tr><td></td><td></td><td></td></tr>
     </table>
         
-        <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="5">
+        <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8" onitemcommand="dlimage_ItemCommand">
          <ItemTemplate>
          <table>
          <tr><td> <a href='<%# Eval("PhotoPath","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>'  Height="150px" Width="200px"/>
                  </a></td></tr>
-          <tr><td><asp:Label ID="lbldescription" runat="server" Text='<%# Eval("photo") %>'></asp:Label></td></tr>
+          <tr><td><asp:LinkButton ID="lbtDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("PhotoId") %>'></asp:LinkButton></asp:Label></td></tr>
          </table>             
                   </ItemTemplate>  
         </asp:DataList>                           
