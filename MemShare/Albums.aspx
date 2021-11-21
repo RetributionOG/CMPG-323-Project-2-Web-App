@@ -23,15 +23,22 @@
     <form id="form1" runat="server">
     <div style="margin-left:40px;">
      <table>
-        <tr><td></td><td></td></tr>
+        <tr><td>
+            <asp:Button ID="btnback" runat="server" Text="Go Back" OnClick="btnback_Click" />
+            </td><td></td></tr>
            <tr><td></td><td></td></tr>
     <tr><td>Create Album :</td><td> <asp:TextBox ID="txtalbumname" runat="server"></asp:TextBox></td></tr>
      <tr><td></td><td></td></tr>
     <tr><td>Upload Cover :</td><td> <asp:FileUpload ID="albumcover" runat="server" /></td></tr>
      <tr><td></td><td></td></tr>
-    <tr><td></td><td> <asp:Button ID="btncreate" runat="server" Text="Create Album" OnClick="btnCreate_Click"
+    <tr><td>&nbsp;</td><td> <asp:Button ID="btncreate" runat="server" Text="Create Album" OnClick="btnCreate_Click"
              /></td></tr>
-    <tr><td></td><td></td></tr>
+    <tr><td>
+        <asp:Label ID="Label1" runat="server" Text="Enter Album Name:"></asp:Label>
+        </td><td>
+            <asp:TextBox ID="txtDelete" runat="server"></asp:TextBox>
+            <asp:Button ID="btnDeleteAlbum" runat="server" OnClick="btnDeleteAlbum_Click" Text="Delete Album" />
+        </td></tr>
     <tr><td></td><td></td></tr>
     </table>
     <asp:DataList ID="dlImages" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8"

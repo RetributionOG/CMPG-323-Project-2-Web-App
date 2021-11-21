@@ -71,5 +71,59 @@ namespace MemShare
             Session["albumid"] = id;
             Response.Redirect("AlbumViewer.aspx");
         }
+
+        protected void btnDeleteAlbum_Click(object sender, EventArgs e)
+        {
+            if (txtDelete.Text == "")
+            {
+                Response.Write("<script>alert('Please enter an album name')</script>");
+
+            }
+            else
+            {
+                try
+                {
+                    string albumId = getAlbumId(txtDelete.Text);
+
+                    SqlConnection con = new SqlConnection(sqlStr);
+
+                    con.Open();
+                    SqlCommand com;
+                    string delete = "DELETE FROM tblAlbum WHERE AlbumId = '" + albumId + "'";
+                    com = new SqlCommand(delete, con);
+                    com.ExecuteNonQuery();
+                    con.Close();
+
+                    con.Open();
+                    SqlCommand comm;
+                    delete = "DELETE FROM tblPhotos WHERE albumId = '" + albumId + "'";
+                    comm = new SqlCommand(delete, con);
+                    comm.ExecuteNonQuery();
+                    con.Close();
+                    BindDatalist();
+                }
+                catch
+                {
+                    Response.Write("<script>alert('A delete error error occured')</script>");
+                }
+            }
+        }
+
+        private string getAlbumId(string albumName)
+        {
+            string albumId;
+            SqlConnection con = new SqlConnection(sqlStr);
+            con.Open();
+            SqlCommand cmd;
+            string sql = "SELECT AlbumId FROM tblAlbum WHERE AlbumName = '" + albumName + "'";
+            cmd = new SqlCommand(sql, con);
+            albumId = cmd.ExecuteScalar().ToString();
+            return albumId;
+        }
+
+        protected void btnback_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace MemShare
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Cookies.Remove("isValid");
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -45,11 +45,6 @@ namespace MemShare
 
                     if (decryptPass.Equals(password))
                     {
-                        HttpCookie isValid = new HttpCookie("isValid");
-                        isValid["valid"] = txtEmail.Text;
-                        Response.Cookies.Add(isValid);
-                        isValid.Expires = DateTime.Now.AddMinutes(30);
-
                         Session["email"] = txtEmail.Text;
                         Session["password"] = txtPassword.Text;
 
@@ -77,11 +72,6 @@ namespace MemShare
             Response.Redirect("RequestCode.aspx");
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Welcome.aspx");
-        }
-
         public string DecryptString(string encrString)
         {
             byte[] b;
@@ -96,6 +86,11 @@ namespace MemShare
                 decrypted = "";
             }
             return decrypted;
+        }
+
+        protected void btnSignup_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SignUp.aspx");
         }
     }
 }

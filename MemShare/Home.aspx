@@ -75,6 +75,7 @@
     <form id="form1" runat="server">
     <div>
         <asp:Label ID="lblWelcome" runat="server" Text="Welcome"></asp:Label>
+        <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
         <br />
         <br />
         <br />
@@ -82,7 +83,6 @@
         <br />
         <br />
         <asp:Button ID="btnViewPhotos" runat="server" Text="View photos" OnClick="btnViewPhotos_Click" />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
         <br />
@@ -108,6 +108,14 @@
 &nbsp;&nbsp;
                     <asp:Button ID="btnDeletePhoto" runat="server" OnClick="btnDeletePhoto_Click" Text="Delete photo" />
                 </td>
+           &nbsp;&nbsp;
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                </td>
                 <td class="auto-style3">
                     <asp:Label ID="lblGeolocation" runat="server" Text="Geolocation: "></asp:Label>
 &nbsp;&nbsp; </td>
@@ -123,16 +131,23 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style2">&nbsp;</td>
+                <td class="auto-style2">
+                    <asp:Button ID="btnViewShared" runat="server" OnClick="btnViewShared_Click" Text="View Shared Images"/>
+                </td>
                 <td class="auto-style3">
                     <asp:Label ID="lblCaptureDate" runat="server" Text="Capture date: "></asp:Label>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style2">&nbsp;</td>
+                <td class="auto-style2">
+                    <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search Photos"/>
+                </td>
                 <td class="auto-style3">
                     <asp:Label ID="lblCaptureBy" runat="server" Text="Capture by: "></asp:Label>
+                </td>
+                <td>
+                    <asp:Button ID="btnShare" runat="server" OnClick="btnShare_Click" Text="Share" />
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -141,7 +156,18 @@
 
     </div>
         <div>
-            <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8" onitemcommand="dlimage_ItemCommand">
+         <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8" onitemcommand="dlimage_ItemCommand">
+         <ItemTemplate>
+         <table>
+         <tr><td> <a href='<%# Eval("PhotoPath","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>'  Height="150px" Width="200px"/>
+                 </a></td></tr>
+          <tr><td><asp:LinkButton ID="lbtDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("PhotoId") %>'></asp:LinkButton></asp:Label></td></tr>
+         </table>             
+                  </ItemTemplate>  
+        </asp:DataList> 
+        </div>
+        <div>
+         <asp:DataList ID="dlShared" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8" onitemcommand="dlShared_ItemCommand">
          <ItemTemplate>
          <table>
          <tr><td> <a href='<%# Eval("PhotoPath","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>'  Height="150px" Width="200px"/>
