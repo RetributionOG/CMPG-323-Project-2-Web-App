@@ -167,7 +167,6 @@
     <Content Include="Container-sm\js\bootstrap.bundle.min.js.map" />
     <Content Include="Container-sm\js\bootstrap.js.map" />
     <Content Include="Container-sm\js\bootstrap.min.js.map" />
-    <None Include="Properties\PublishProfiles\MemShare - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MemShare20211121155500 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Home.aspx" />

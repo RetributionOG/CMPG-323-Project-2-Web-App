@@ -68,12 +68,6 @@ namespace MemShare
                     adp.Fill(dt);
                 }
 
-                //SqlDataAdapter adp = new SqlDataAdapter("GetPhotoData", con);
-                //adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-                //adp.SelectCommand.Parameters.AddWithValue("@id", tempList.ToArray());
-                //DataTable dt = new DataTable();
-                //adp.Fill(dt);
-
                 dlimage.DataSource = dt;
                 dlimage.DataBind();
                 con.Close();
