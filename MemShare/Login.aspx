@@ -42,8 +42,8 @@
             <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Please provide password" ControlToValidate="txtPassword" CssClass="validators" SetFocusOnError="True"></asp:RequiredFieldValidator>
             <asp:TextBox ID="txtPassword" runat="server" CssClass="txtPassword" placeholder="********" TextMode="Password"/>
             <asp:Button ID="btnSubmit" Text="Sign In" CssClass="btnSubmit" runat="server" OnClick="btnSubmit_Click" />
-            <asp:LinkButton Text="Forgot Password?" CssClass="btnForget" runat="server" OnClick="btnForgotPassword_Click" CausesValidation="false"/> 
-            <asp:LinkButton Text="Create Account" CssClass="btnForget" runat="server"  CausesValidation="false" OnClick="btnSignup_Click"/>
+            <asp:LinkButton Text="Forgot Password?" CssClass="btnForget" runat="server" OnClick="btnForgotPassword_Click" CausesValidation="false"/>
+            <asp:LinkButton Text="Create New Account" CssClass="btnForget" runat="server" OnClick="btnSignup_Click" CausesValidation="false"/>
         </form>
     </div>
 </body>

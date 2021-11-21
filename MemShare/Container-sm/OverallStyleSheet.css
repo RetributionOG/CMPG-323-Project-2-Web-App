@@ -1,14 +1,16 @@
-﻿.body 
+﻿body 
 {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+
+    background-image: url('../Images/SAARA001.png');
     height: 100%;
     background-position: center;
-    background-size: 100%;
+    background-size: contain;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-color: #FFFFFF;
+    background-color: #000000;
 }
 
 .loginbox 
@@ -18,7 +20,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
-    height: 500px;
+    height: 440px;
     padding: 80px 40px;
     box-sizing: border-box;
     background: rgba(128, 128, 128, 0.9);
@@ -41,11 +43,11 @@
 
 .logo 
 {
-    width: 182px;
-    height: 159px;
+    width: 175px;
+    height: 150px;
     overflow: hidden;
-    top: -79px;
-    left: 85px;
+    top: calc(-150px/2);
+    left: calc(35% - 35px);
     position: absolute;
     border-radius: 10%;
 }
@@ -76,7 +78,7 @@ h2
     padding: 0;
     margin: 0;
     text-align: center;
-    color: rgb(249, 152, 32);
+    color: rgb(255, 217, 9);
 }
 
 h3 {
@@ -135,7 +137,7 @@ h6 {
 .lblEmail, .lblPassword, .lblName, .lblContactNo, .chkBoxDelete
 {
     font-weight: bold;
-    color: #f99820;
+    color: #ffd909;
 }
 
 .txtEmail, .txtPassword, .btnSubmit, .txtContactNo, .txtName 
@@ -160,12 +162,13 @@ h6 {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.btnSubmit, .btnSubmitContact {
+.btnSubmit, .btnSubmitContact
+{
     border: none;
     outline: none;
     height: 40px;
     font-size: 16px;
-    color: rgb(249, 152, 32);
+    color: rgba(255, 205, 9, 0.92);
     background-color: rgb(0, 0, 0);
     cursor: pointer;
     border-radius: 20px;
@@ -182,30 +185,11 @@ h6 {
     font-size: 16px;
     font-weight: 700;
     text-decoration: none;
-    color: #f99820;
-    position: relative;
-    z-index: 1;
-    left: 40px;
-    top: 415px;
+    color: #ffd909;
 }
 
 .btnForget:hover
 {
-    text-decoration: underline;
-}
-
-.btnSignup {
-    font-size: 16px;
-    font-weight: 700;
-    text-decoration: none;
-    color: #ffd909;
-    position: relative;
-    z-index: 1;
-    left: 40px;
-    top: 420px;
-}
-
-.btnSignup:hover {
     text-decoration: underline;
 }
 
