@@ -396,5 +396,37 @@ namespace MemShare
                 Response.End();
             }
         }
+
+        protected void dlShared_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName == "Download")
+            {
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("content-disposition", "filename=" + e.CommandArgument);
+                Response.TransmitFile(Server.MapPath("/Images/") + e.CommandArgument);
+                Response.End();
+            }
+        }
+
+        protected void btnShare_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnViewShared_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Search.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }

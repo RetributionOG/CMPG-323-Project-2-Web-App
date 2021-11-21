@@ -81,7 +81,7 @@ namespace MemShare
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Welcome.aspx");
+            Response.Redirect("Login.aspx");
         }
 
         public string encryptpass(string password)

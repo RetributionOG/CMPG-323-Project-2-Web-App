@@ -33,6 +33,15 @@ namespace MemShare
         protected global::System.Web.UI.WebControls.Label lblWelcome;
 
         /// <summary>
+        /// btnLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogout;
+
+        /// <summary>
         /// btnViewPhotos control.
         /// </summary>
         /// <remarks>
@@ -40,15 +49,6 @@ namespace MemShare
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnViewPhotos;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
         /// FileUpload1 control.
@@ -150,6 +150,15 @@ namespace MemShare
         protected global::System.Web.UI.WebControls.Label lblTags;
 
         /// <summary>
+        /// btnViewShared control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnViewShared;
+
+        /// <summary>
         /// lblCaptureDate control.
         /// </summary>
         /// <remarks>
@@ -157,6 +166,15 @@ namespace MemShare
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCaptureDate;
+
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
         /// lblCaptureBy control.
@@ -168,6 +186,15 @@ namespace MemShare
         protected global::System.Web.UI.WebControls.Label lblCaptureBy;
 
         /// <summary>
+        /// btnShare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShare;
+
+        /// <summary>
         /// dlimage control.
         /// </summary>
         /// <remarks>
@@ -175,5 +202,14 @@ namespace MemShare
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dlimage;
+
+        /// <summary>
+        /// dlShared control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlShared;
     }
 }
