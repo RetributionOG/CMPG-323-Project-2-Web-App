@@ -23,6 +23,7 @@
             margin: 5px;
         }
     </style>
+    <link href="Container-sm/OverallStyleSheet.css" rel="stylesheet" />
     <link href="css/colorbox.css" rel="stylesheet" type="text/css" />
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
                         <script src="js/jquery.colorbox.js"></script>
@@ -71,12 +72,12 @@
             </table>
         </div>
         <div>
-         <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="photoId" RepeatColumns="8" onitemcommand="dlimage_ItemCommand">
+         <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="photoId" RepeatColumns="8">
          <ItemTemplate>
          <table>
-         <tr><td> <a href='<%# Eval("PhotoPath","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>'  Height="150px" Width="200px"/>
+         <tr><td> <a href='<%# Eval("PhotoPath","{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","{0}") %>'  Height="150px" Width="200px"/>
                  </a></td></tr>
-          <tr><td><asp:LinkButton ID="lbtDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("Photo") %>'></asp:LinkButton></asp:Label></td></tr>
+          <tr><td><asp:Label ID="lblDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("PhotoId") %>'></asp:Label></td></tr>
          </table>             
                   </ItemTemplate>  
         </asp:DataList> 

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.WindowsAzure.Storage;
 
 namespace MemShare
 {
@@ -40,17 +41,18 @@ namespace MemShare
             try
             {
                 string email = (Session["email"].ToString());
-                string filepath = Server.MapPath("/Images/") + Guid.NewGuid() + albumcover.PostedFile.FileName;
-                albumcover.SaveAs(filepath);
-                string fl = filepath.Substring(filepath.LastIndexOf("\\"));
-                string[] split = fl.Split('\\');
-                string newpath = split[1];
-                string imagepath = "/Images/" + newpath;
+                var fileAsByteArray = albumcover.FileBytes;
+                var storageacc = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=memsharestorageaccount;AccountKey=+05e+/h6NbdmaAR7ppt5qATeJkmKALH0EyIhTKiE+mgs1TUEjQ+ku+kM0YOHYbTY1ZBHDspLE4tnQ0EQnuvENQ==;EndpointSuffix=core.windows.net");
+                var blobClient = storageacc.CreateCloudBlobClient();
+                var container = blobClient.GetContainerReference("memshareimages");
+                var blockBlob = container.GetBlockBlobReference(albumcover.PostedFile.FileName);
+                blockBlob.UploadFromByteArray(fileAsByteArray, 0, fileAsByteArray.Length);
+                string picPath = blockBlob.Uri.ToString();
                 SqlCommand cmd = new SqlCommand("InsertAlbum", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 cmd.Parameters.AddWithValue("@name", txtalbumname.Text);
-                cmd.Parameters.AddWithValue("@albumcover", imagepath);
+                cmd.Parameters.AddWithValue("@albumcover", picPath);
                 cmd.Parameters.AddWithValue("@owneremail", email);
                 cmd.Parameters.Add("@AlbumId", SqlDbType.Int);
                 cmd.Parameters["@AlbumId"].Direction = ParameterDirection.Output;
