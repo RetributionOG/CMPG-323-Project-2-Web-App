@@ -127,6 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="Albums.aspx" />
     <Content Include="AlbumViewer.aspx" />
     <Content Include="Container-sm\css\bootstrap-grid.css" />
