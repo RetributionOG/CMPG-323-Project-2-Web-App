@@ -23,59 +23,34 @@ namespace MemShare
             string sqlStr = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
             SqlCommand cmd;
 
-            if (txtCode.Text.Equals(Session["Code"].ToString()))
+            if (txtPassword.Text.Equals(txtPasswordConfirm.Text))
             {
-                if (txtPassword.Text.Equals(txtPasswordConfirm.Text))
-                {
-                    SqlConnection con = new SqlConnection(sqlStr);
-                    string sql;
-                    string newEncryptPass;
-                    string email;
+                SqlConnection con = new SqlConnection(sqlStr);
+                string sql;
+                string newEncryptPass;
+                string email;
 
-                    email = Session["Email"].ToString();
+                email = txtEmail.Text;
 
-                    newEncryptPass = encryptpass(txtPasswordConfirm.Text);
+                newEncryptPass = encryptpass(txtPasswordConfirm.Text);
 
-                    sql = @"UPDATE tblUsers SET Password = '" + newEncryptPass + "' WHERE Email = '" + email + "'";
+                sql = @"UPDATE tblUsers SET Password = '" + newEncryptPass + "' WHERE Email = '" + email + "'";
 
-                    con.Open();
+                con.Open();
 
-                    cmd = new SqlCommand(sql, con);
-                    cmd.ExecuteNonQuery();
+                cmd = new SqlCommand(sql, con);
+                cmd.ExecuteNonQuery();
 
-                    con.Close();
+                con.Close();
 
-                    MailMessage mailMessage = new MailMessage("camerondebastos3@gmail.com", email);
-                    mailMessage.Subject = "Password Reset Successful";
-
-                    mailMessage.Body = "Hello," + Environment.NewLine + Environment.NewLine + "Your request to reset your password on the MemShare website has been successfully completed."+
-                                           Environment.NewLine + Environment.NewLine + "Best regards," + Environment.NewLine + "The MemShare Management Team";
-
-                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-                    smtpClient.Credentials = new System.Net.NetworkCredential()
-                    {
-                        UserName = "camerondebastos3@gmail.com",
-                        Password = "KCdb172426"
-                    };
-
-                    smtpClient.EnableSsl = true;
-                    smtpClient.Send(mailMessage);
-
-                    Response.Redirect("Login.aspx");
-                }
-                else
-                {
-                    lblError.Text = "Passwords do not match.";
-                    lblError.Visible = true;
-                }
+                Response.Redirect("Login.aspx");
             }
             else
             {
-                lblError.Text = "Incorrect code.";
+                lblError.Text = "Passwords do not match.";
                 lblError.Visible = true;
             }
-
-        }
+            }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {

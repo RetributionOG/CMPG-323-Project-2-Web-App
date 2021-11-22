@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using Microsoft.WindowsAzure.Storage;
 
 namespace MemShare
 {
@@ -23,17 +24,18 @@ namespace MemShare
         {
             SqlConnection con = new SqlConnection(sqlStr);
             int UserId = getUserId();
-            string filepath = Server.MapPath("/Images/") + Guid.NewGuid() + FileUpload.PostedFile.FileName;
-            FileUpload.SaveAs(filepath);
-            string fl = filepath.Substring(filepath.LastIndexOf("\\"));
-            string[] split = fl.Split('\\');
-            string newpath = split[1];
-            string imagepath = "/Images/" + newpath;
+            var fileAsByteArray = FileUpload.FileBytes;
+            var storageacc = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=memsharestorageaccount;AccountKey=+05e+/h6NbdmaAR7ppt5qATeJkmKALH0EyIhTKiE+mgs1TUEjQ+ku+kM0YOHYbTY1ZBHDspLE4tnQ0EQnuvENQ==;EndpointSuffix=core.windows.net");
+            var blobClient = storageacc.CreateCloudBlobClient();
+            var container = blobClient.GetContainerReference("memshareimages");
+            var blockBlob = container.GetBlockBlobReference(FileUpload.PostedFile.FileName);
+            blockBlob.UploadFromByteArray(fileAsByteArray, 0, fileAsByteArray.Length);
+            string picPath = blockBlob.Uri.ToString();
             con.Open();
             SqlCommand cmd = new SqlCommand("InsertPhoto", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@albumid", Convert.ToInt32(Session["albumid"].ToString()));
-            cmd.Parameters.AddWithValue("@photopath", newpath);
+            cmd.Parameters.AddWithValue("@photopath", picPath);
             cmd.Parameters.AddWithValue("@userid", UserId);
             cmd.Parameters.Add("@id", SqlDbType.Int);
             cmd.Parameters["@id"].Direction = ParameterDirection.Output;
@@ -82,7 +84,7 @@ namespace MemShare
             foreach (GridViewRow gvrow in grdPhoto.Rows)
             {
                 int id = Convert.ToInt32(grdPhoto.DataKeys[gvrow.RowIndex].Value.ToString());
-                string name = ((TextBox)gvrow.FindControl("TextBox1")).Text;
+                string name = ((TextBox)gvrow.FindControl("txtDescription")).Text;
                 SqlCommand cmd = new SqlCommand("UpdatePhoto", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();

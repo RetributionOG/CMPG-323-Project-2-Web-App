@@ -43,7 +43,6 @@ namespace MemShare
         {
             Response.Redirect("Gallery.aspx");
         }
-
         protected void dlimage_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (e.CommandName == "Download")
@@ -51,7 +50,7 @@ namespace MemShare
                 Response.Clear();
                 Response.ContentType = "application/octet-stream";
                 Response.AppendHeader("content-disposition", "filename=" + e.CommandArgument);
-                Response.TransmitFile(Server.MapPath("/Images/") + e.CommandArgument);
+                Response.TransmitFile(Server.MapPath("") + e.CommandArgument);
                 Response.End();
             }
         }

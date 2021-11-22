@@ -60,6 +60,17 @@
             border-radius: 12px;
             margin: 5px;
         }
+        #form1{
+            display: flex;
+            justify-content: center;
+            box-shadow: 0px 6px 12px 0px rgba(0,0,0,0.4);
+            margin-top: 50px;
+            border-radius: 13px;
+        }
+        .Goodlooking{
+            width: 100%;
+            padding: 10px;
+        }
      </style>
     <link href="css/colorbox.css" rel="stylesheet" type="text/css" />
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -69,6 +80,7 @@
                 $(".test").colorbox({ rel: 'group1', transition: "none", width: "700px " });
             });
         </script>
+    <link href="Container-sm/OverallStyleSheet.css" rel="stylesheet" />
     <title></title>
     </head>
 <body style="height: 587px; width: 1309px">
@@ -155,27 +167,28 @@
         <br />
 
     </div>
-        <div>
-         <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8" onitemcommand="dlimage_ItemCommand">
+        <div class="Goodlooking">
+         <asp:DataList ID="dlimage" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="3" onitemcommand="dlimage_ItemCommand">
          <ItemTemplate>
          <table>
-         <tr><td> <a href='<%# Eval("PhotoPath","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>'  Height="150px" Width="200px"/>
+         <tr><td> <a href='<%# Eval("PhotoPath","{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","{0}") %>'  Height="150px" Width="200px"/>
                  </a></td></tr>
-          <tr><td><asp:LinkButton ID="lbtDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("PhotoId") %>'></asp:LinkButton></asp:Label></td></tr>
+          <tr><td><asp:Label ID="lbtDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("PhotoId") %>'></asp:Label></td></tr>
+         </table>             
+                  </ItemTemplate>  
+        </asp:DataList> 
+         <asp:DataList ID="dlShared" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="3" onitemcommand="dlShared_ItemCommand">
+         <ItemTemplate>
+         <table>
+         <tr><td> <a href='<%# Eval("PhotoPath","{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","{0}") %>'  Height="150px" Width="200px"/>
+                 </a></td></tr>
+          <tr><td><asp:Label ID="lbtDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("PhotoId") %>'></asp:Label></td></tr>
          </table>             
                   </ItemTemplate>  
         </asp:DataList> 
         </div>
         <div>
-         <asp:DataList ID="dlShared" runat="server" RepeatDirection="Horizontal" DataKeyField="AlbumId" RepeatColumns="8" onitemcommand="dlShared_ItemCommand">
-         <ItemTemplate>
-         <table>
-         <tr><td> <a href='<%# Eval("PhotoPath","Images/{0}") %>' class='test' title='<%# Eval("photo") %>'><asp:Image ID="img"  runat="server" ImageUrl='<%# Eval("PhotoPath","/Images/{0}") %>'  Height="150px" Width="200px"/>
-                 </a></td></tr>
-          <tr><td><asp:LinkButton ID="lbtDescription" runat="server" CommandArgument='<%# Eval("PhotoPath") %>' CommandName="Download" Text='<%# Eval("PhotoId") %>'></asp:LinkButton></asp:Label></td></tr>
-         </table>             
-                  </ItemTemplate>  
-        </asp:DataList> 
+         
         </div>
     </form>
     </body>

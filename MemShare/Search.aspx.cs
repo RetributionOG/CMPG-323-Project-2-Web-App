@@ -77,17 +77,5 @@ namespace MemShare
                 Response.Write("<script>alert('Connection error')</script>");
             }
         }
-
-        protected void dlimage_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            if (e.CommandName == "Download")
-            {
-                Response.Clear();
-                Response.ContentType = "application/octet-stream";
-                Response.AppendHeader("content-disposition", "filename=" + e.CommandArgument);
-                Response.TransmitFile(Server.MapPath("/Images/") + e.CommandArgument);
-                Response.End();
-            }
-        }
     }
 }

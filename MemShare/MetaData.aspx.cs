@@ -24,16 +24,16 @@ namespace MemShare
                 if (addOrUpdate == "addphoto")
                 {
                     string photo = (Session["photo"].ToString());
-                    imgUpload.ImageUrl = "/Images/" + photo;
+                    imgUpload.ImageUrl = photo;
 
                 }
                 else if (addOrUpdate == "update")
                 {
                     string photoId = (Session["photoId"].ToString());
 
-                    string photo = getPhotoPath();
+                    string photo = Session["photo"].ToString();
 
-                    imgUpload.ImageUrl = "/Images/" + photo;
+                    imgUpload.ImageUrl = photo;
 
                     string photoID = Session["photoId"].ToString();
                     string loc = getGeolocation(photoID);
@@ -46,37 +46,53 @@ namespace MemShare
                     txtTags.Text = tags;
                     //lblTest.Text = wtf.ToString();
                 }
+                else if (addOrUpdate == "updateAdd")
+                {
+                    string photoId = (Session["photoId"].ToString());
+                    string photo = getPhotoPath();
+                    imgUpload.ImageUrl = photo;
+
+                    Calendar1.SelectedDate = DateTime.Today;
+                    txtGeo.Text = "None";
+                    txtCaptureBy.Text = "None";
+                    txtTags.Text = "None";
+                }
 
                 //int photoid = getPhotoId();
                 //lbltest.Text = photoid.ToString();
             }
         }
 
+        private string getphotoPath()
+        {
+            string photoID = Session["photoId"].ToString();
+            SqlConnection con = new SqlConnection(sqlStr);
+            con.Open();
+            SqlCommand cmd;
+            string sql = "SELECT PhotoPath FROM tblPhotos WHERE photoId = '" + photoID + "'";
+            cmd = new SqlCommand(sql, con);
+            string photoPath = cmd.ExecuteScalar().ToString();
+            return photoPath;
+        }
+
         protected void Submit_Click(object sender, EventArgs e)
         {
             string addOrUpdate = Session["addOrUpdate"].ToString();
-
-            if (addOrUpdate == "addphoto")
+            
+            if (addOrUpdate == "addphoto")// || addOrUpdate == "updateAdd")
             {
                 try
                 {
+                    string path = Session["photo"].ToString();
                     //int photoid = getPhotoId();
                     SqlConnection con = new SqlConnection(sqlStr);
                     //con.Open();
 
                     //insert data into photo table
                     int userId = getUserId();
-                    string path = (Session["photo"].ToString());
+                    //string path = (Session["photo"].ToString());
                     int albumId = 0;
 
-                    //SqlCommand cmd = new SqlCommand("INSERT INTO tblPhotos VALUES(@Photo, @UserId, @AlbumId)", con);
-
-                    //con.Open();
-                    //cmd.Parameters.AddWithValue("@Photo", path);
-                    //cmd.Parameters.AddWithValue("@UserId", userId);
-                    //cmd.Parameters.AddWithValue("@AlbumId", albumId);
-                    //cmd.ExecuteNonQuery();
-                    //con.Close();
 
                     //insert values in procedure
                     con.Open();
@@ -85,6 +101,7 @@ namespace MemShare
                     sqlcmd.Parameters.AddWithValue("@PhotoPath", path);
                     sqlcmd.Parameters.AddWithValue("@UserId", userId);
                     sqlcmd.Parameters.AddWithValue("@AlbumId", albumId);
+                    sqlcmd.Parameters.AddWithValue("@Photo", "None");
                     sqlcmd.Parameters.Add("@photoId", SqlDbType.Int).Direction = ParameterDirection.Output;
                     sqlcmd.ExecuteNonQuery();
 
@@ -92,8 +109,7 @@ namespace MemShare
                     string photoid = sqlcmd.Parameters["@photoId"].Value.ToString();
                     con.Close();
 
-                     DateTime date = Calendar1.SelectedDate;
-                    
+                    Calendar1.SelectedDate = DateTime.Today;
 
                     if (txtGeo.Text == "")
                     {
@@ -107,10 +123,10 @@ namespace MemShare
                     {
                         txtTags.Text = "None";
                     }
-                    if (Calendar1.SelectedDate == null)
-                    {
-                        date =  DateTime.Today;
-                    }
+                    //if (Calendar1.SelectedDate)
+                    //{
+                    //    date =  DateTime.Today;
+                    //}
 
                     //insert data into the metadata table
                     con.Open();
@@ -118,11 +134,13 @@ namespace MemShare
                     comm.Parameters.AddWithValue("@PhotoId", photoid);
                     comm.Parameters.AddWithValue("@Geolocation", txtGeo.Text);
                     comm.Parameters.AddWithValue("@Tags", txtTags.Text);
-                    comm.Parameters.AddWithValue("@CaptureDate", date);
+                    comm.Parameters.AddWithValue("@CaptureDate", Calendar1.SelectedDate);
                     comm.Parameters.AddWithValue("@CaptureBy", txtCaptureBy.Text);
+
                     comm.ExecuteNonQuery();
                     con.Close();
 
+                    Response.Write("<script>alert('Photo was added successfully')</script>");
                     Response.Redirect("Home.aspx");
                 }
                 catch (Exception ex)
@@ -154,6 +172,71 @@ namespace MemShare
 
                 Response.Redirect("Home.aspx");
             }
+            else if (addOrUpdate == "updateAdd")
+            {
+                try
+                {
+                    //int photoid = getPhotoId();
+                    SqlConnection con = new SqlConnection(sqlStr);
+                    //con.Open();
+
+                    //insert data into photo table
+                    int userId = getUserId();
+                    //string path = (Session["photo"].ToString());
+                    int albumId = 0;
+
+
+                    ////insert values in procedure
+                    //con.Open();
+                    //SqlCommand sqlcmd = new SqlCommand("photolastid", con);
+                    //sqlcmd.CommandType = CommandType.StoredProcedure;
+                    //sqlcmd.Parameters.AddWithValue("@PhotoPath", path);
+                    //sqlcmd.Parameters.AddWithValue("@UserId", userId);
+                    //sqlcmd.Parameters.AddWithValue("@AlbumId", albumId);
+                    //sqlcmd.Parameters.AddWithValue("@Photo", "None");
+                    //sqlcmd.Parameters.Add("@photoId", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    //sqlcmd.ExecuteNonQuery();
+
+                    //get photoid of newly inserted photo
+                    //string photoid = sqlcmd.Parameters["@photoId"].Value.ToString();
+                    //con.Close();
+
+                    Calendar1.SelectedDate = DateTime.Today;
+
+                    if (txtGeo.Text == "")
+                    {
+                        txtGeo.Text = "None";
+                    }
+                    if (txtCaptureBy.Text == "")
+                    {
+                        txtCaptureBy.Text = "None";
+                    }
+                    if (txtTags.Text == "")
+                    {
+                        txtTags.Text = "None";
+                    }
+
+                    string photoid = Session["photoId"].ToString();
+
+                    con.Open();
+                    SqlCommand comm = new SqlCommand("INSERT INTO tblMetaData VALUES(@PhotoId, @Geolocation, @Tags, @CaptureDate, @CaptureBy)", con);
+                    comm.Parameters.AddWithValue("@PhotoId", photoid);
+                    comm.Parameters.AddWithValue("@Geolocation", txtGeo.Text);
+                    comm.Parameters.AddWithValue("@Tags", txtTags.Text);
+                    comm.Parameters.AddWithValue("@CaptureDate", Calendar1.SelectedDate);
+                    comm.Parameters.AddWithValue("@CaptureBy", txtCaptureBy.Text);
+
+                    comm.ExecuteNonQuery();
+                    con.Close();
+
+                    Response.Write("<script>alert('Photo was added successfully')</script>");
+                    Response.Redirect("Home.aspx");
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('A connection error occured. Please try again')</script>");
+                }
+            }
         }
 
         private int getUserId()
@@ -167,21 +250,6 @@ namespace MemShare
             int userId = (int)cmd.ExecuteScalar();
             return userId;
         }
-
-        //private int getPhotoId()
-        //{
-        //    //string photo = (Session["photo"].ToString());
-        //    //SqlConnection con = new SqlConnection(sqlStr);
-        //    //con.Open();
-        //    //SqlCommand cmd;
-        //    //string sql = "SELECT photoId FROM tblPhotos WHERE Photo = '" + photo + "'";
-        //    //cmd = new SqlCommand(sql, con);
-        //    //int photoId = (int)cmd.ExecuteScalar();
-        //    //return photoId;
-
-
-
-        //}
 
         private string getGeolocation(string photoID)
         {

@@ -21,10 +21,9 @@
             &nbsp;
             <asp:Label ID="lblError" runat="server" BackColor="Red" ForeColor="#FFD909" style="z-index: 1; left: 70px; top: -110px; position: absolute"></asp:Label>
             <img src="Images/Login.png" alt="Alternate Text" class="logo" />
-            <h2>New Password</h2>
-            <p2>Enter the code sent to you via email. If not received please retry again.</p2>
-            <asp:Label Text="Unique Code:" CssClass="lblEmail" runat="server" />
-            <asp:TextBox ID="txtCode" runat="server" CssClass="txtEmail" placeholder="Enter Code"></asp:TextBox>
+            <h2>New Password</h2>      
+            <asp:Label Text="Email" CssClass="lblEmail" runat="server" />
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="txtEmail" placeholder="Enter Email"></asp:TextBox>
             <asp:Label Text="Password:" CssClass="lblPassword" runat="server" />
             <asp:TextBox ID="txtPassword" runat="server" CssClass="txtPassword" placeholder="********" TextMode="Password"/>
             <asp:Label Text="Confirm Password:" CssClass="lblPassword" runat="server" />

@@ -14,7 +14,7 @@ namespace MemShare
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Cookies.Remove("isValid");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -45,6 +45,11 @@ namespace MemShare
 
                     if (decryptPass.Equals(password))
                     {
+                        HttpCookie isValid = new HttpCookie("isValid");
+                        isValid["valid"] = txtEmail.Text;
+                        Response.Cookies.Add(isValid);
+                        isValid.Expires = DateTime.Now.AddMinutes(30);
+
                         Session["email"] = txtEmail.Text;
                         Session["password"] = txtPassword.Text;
 
@@ -69,7 +74,7 @@ namespace MemShare
 
         protected void btnForgotPassword_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RequestCode.aspx");
+            Response.Redirect("ResetPassword.aspx");
         }
 
         public string DecryptString(string encrString)
